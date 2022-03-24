@@ -18,7 +18,7 @@
   <meta name="author" content="showstarpro">
   <meta name="keywords" content="">
   
-  <title>数据库2-关系代数 - showstarpro</title>
+  <title>pytorch - showstarpro</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="数据库2-关系代数">
+            <span class="h2" id="subtitle" title="pytorch">
               
             </span>
 
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-06-29 20:47" pubdate>
-        2021年6月29日 晚上
+      <time datetime="2022-03-24 16:53" pubdate>
+        2022年3月24日 下午
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      321 字
+      670 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      8
        分钟
     </span>
   
@@ -225,45 +225,22 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">数据库2-关系代数</h1>
+            <h1 style="display: none">pytorch</h1>
             
             <div class="markdown-body">
-              <h1 id="关系模式"><a href="#关系模式" class="headerlink" title="关系模式"></a>关系模式</h1><h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h3><p>关系模式是型，是静态的、稳定的。而关系是关系模式的具体的值，是动态的、变化的</p>
-<h3 id="候选码"><a href="#候选码" class="headerlink" title="候选码"></a>候选码</h3><p>关系中的一组属性能够唯一的标识一个元组，而且这组属性任何一个属性去掉后都不能具有标识作用，则这组属性被称为候选码</p>
-<h3 id="主码"><a href="#主码" class="headerlink" title="主码"></a>主码</h3><p>从多个候选码中选一个作为标识，这个候选码被称为主码</p>
-<h3 id="外码"><a href="#外码" class="headerlink" title="外码"></a>外码</h3><p>参照关系R中的一个或一组属性F是被参照关系S中的主码，则F就是外码</p>
-<h2 id="关系的完整性约束"><a href="#关系的完整性约束" class="headerlink" title="关系的完整性约束"></a>关系的完整性约束</h2><h3 id="实体完整性"><a href="#实体完整性" class="headerlink" title="实体完整性"></a>实体完整性</h3><p>关系中的主码不能为空</p>
-<h3 id="参照完整性"><a href="#参照完整性" class="headerlink" title="参照完整性"></a>参照完整性</h3><p>参照关系R上的外码F是被参照关系S上的主码，则F必须是空值或者是S中某个元组的主码值</p>
-<p>在参照完整性中，如果外码F不是关系R上的主属性，则F可以为空。</p>
-<h3 id="用户定义的完整性"><a href="#用户定义的完整性" class="headerlink" title="用户定义的完整性"></a>用户定义的完整性</h3><p>反映了某一具体应用所设计的数据必须满足的语义要求。</p>
-<hr>
-<h1 id="关系代数"><a href="#关系代数" class="headerlink" title="关系代数"></a>关系代数</h1><p>五个基本运算：并、差、选择、投影、笛卡尔积</p>
-<p>常用的运算</p>
-<table>
-<thead>
-<tr>
-<th>运算</th>
-<th>符号</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>选择</td>
-<td>σ</td>
-</tr>
-<tr>
-<td>投影</td>
-<td>π</td>
-</tr>
-<tr>
-<td>连接</td>
-<td>⋈</td>
-</tr>
-<tr>
-<td>除</td>
-<td>÷</td>
-</tr>
-</tbody></table>
-
+              <h2 id="回归-vs-分类"><a href="#回归-vs-分类" class="headerlink" title="回归 vs 分类"></a>回归 vs 分类</h2><p>回归估计一个连续值，单连续数值输出，自然区间R</p>
+<p>分类估计一个离散值，通常为多输出，输出i为第i类的置信度<br>$$<br>\hat{y}<em>{i}=\frac{\exp \left(o</em>{i}\right)}{\sum_{k} \exp \left(o_{k}\right)}<br>$$</p>
+<h3 id="softmax回归"><a href="#softmax回归" class="headerlink" title="softmax回归"></a>softmax回归</h3><p>softmax回归的输出层是一个全连接层。</p>
+<h4 id="softmax运算符"><a href="#softmax运算符" class="headerlink" title="softmax运算符"></a>softmax运算符</h4><p>softmax解决了输出层的输出值的范围不确定的问题；由于真实标签是离散值，这些离散值与不确定范围的输出值之间的误差难以衡量。</p>
+<p>softmax将输出值变换成值为正且和为1的概率分布：<br>$$<br>{\hat y}<em>1,{\hat y}<em>2,{\hat y}<em>3 = sfotmax(o_1,o_2,o_3)<br>$$<br>其中<br>$$<br>\hat{y}</em>{1}=\frac{\exp (o_1)}{\sum</em>{i=1}^{3} \exp \left(o</em>{i}\right)},\hat{y}<em>{1}=\frac{\exp (o_2)}{\sum</em>{i=1}^{3} \exp \left(o_{i}\right)},\hat{y}<em>{1}=\frac{\exp (o_3)}{\sum</em>{i=1}^{3} \exp \left(o_{i}\right)}<br>$$<br>容易看出${\hat y}<em>1+{\hat y}<em>2+{\hat y}<em>3=1$且$0 \leq \hat{y}</em>{1}, \hat{y}</em>{2}, \hat{y}</em>{3} \leq 1 $.</p>
+<p>softmax并不改变预测类别的输出结果。</p>
+<h4 id="小批量样本分类的矢量计算表达式"><a href="#小批量样本分类的矢量计算表达式" class="headerlink" title="小批量样本分类的矢量计算表达式"></a>小批量样本分类的矢量计算表达式</h4><p>为了进一步提升计算效率，通常对小批量数据进行矢量计算。</p>
+<p>对于给定的一个小批量样本，其批量大小为n，输入个数（特征数）为d，输出个数（类别数）为q。设批量特征为$\boldsymbol{X} \in \mathbb{R}^{n \times d}$。假设softmax回归的回归权重和偏差参数分别为$\boldsymbol{W} \in \mathbb{R}^{d \times q}$和$\boldsymbol{b} \in \mathbb{R}^{1 \times q}$。softmax回归的矢量计算表达式为<br>$$<br>\begin{array}{l}<br>\boldsymbol{O}=\boldsymbol{X} \boldsymbol{W}+\boldsymbol{b} \<br>\hat{\boldsymbol{Y}}=\operatorname{softmax}(\boldsymbol{O})<br>\end{array}<br>$$</p>
+<h4 id="交叉熵损失函数"><a href="#交叉熵损失函数" class="headerlink" title="交叉熵损失函数"></a>交叉熵损失函数</h4><p>交叉熵损失函数思路：想要预测分类结果正确并不需要预测概率完全等于标签概率。而只需要正确的标签概率比其他的预测值都大就行。</p>
+<p>改善的方法是使用更适合衡量两个概率分布差异的测试函数。其中，交叉熵（cross entropy）是一个常用的方法：<br>$$<br>H\left(\boldsymbol{y}^{(i)}, \hat{\boldsymbol{y}}^{(i)}\right)=-\sum_{j=1}^{q} y_{j}^{(i)} \log \hat{y}_{j}^{(i)}<br>$$<br>其中带下标的$y^{(i)}_j$是向量$\boldsymbol y^{(i)}$中非0即1的元素，即是元素值。</p>
+<p>交叉熵只关心对正确类别的预测概率，因为只要其值足够大，就可以确保分类结果正确。</p>
+<p>假设训练数据集的样本数为n，交叉熵损失函数定义为<br>$$<br>\ell(\boldsymbol{\Theta})=\frac{1}{n} \sum_{i=1}^{n} H\left(\boldsymbol{y}^{(i)}, \hat{\boldsymbol{y}}^{(i)}\right)<br>$$<br>其中$\boldsymbol{\Theta}$代表模型参数。</p>
+<h2 id="图像分类数据集"><a href="#图像分类数据集" class="headerlink" title="图像分类数据集"></a>图像分类数据集</h2>
             </div>
             <hr>
             <div>
@@ -272,7 +249,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+                      <a class="hover-with-bg" href="/categories/pytorch/">pytorch</a>
                     
                   </div>
                 
@@ -280,7 +257,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+                      <a class="hover-with-bg" href="/tags/softmax/">softmax</a>
                     
                   </div>
                 
@@ -297,18 +274,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/24/pytorch/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">pytorch</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/06/29/%E6%95%B0%E6%8D%AE%E5%BA%931-%E7%BB%AA%E8%AE%BA/">
-                        <span class="hidden-mobile">数据库1-绪论</span>
+                      <a href="/2021/06/29/%E6%95%B0%E6%8D%AE%E5%BA%932-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/">
+                        <span class="hidden-mobile">数据库2-关系代数</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

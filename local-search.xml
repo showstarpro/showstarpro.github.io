@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Rotation</title>
+    <link href="/2022/03/27/Rotation/"/>
+    <url>/2022/03/27/Rotation/</url>
+    
+    <content type="html"><![CDATA[<h1 id="unsupervised-representation-learning-by-predicting-image-rotations">unsupervised representation learning by predicting image rotations</h1><h2 id="摘要">摘要</h2><p>1、ConvNets</p><p>优点：由于强大的能力在CV领域大量的使用</p><p>缺点：需要大量的人工标注的数据，昂贵且不易大量获得</p><p>2、unsupervised</p><p>优点：不需要人工注释</p><p>3、 our work</p><p>提出自己的想法：学习图像特征通过训练ConvNets识别输入图片的2d旋转。</p><p>定性定量的证明了：这提供了一个强有力的监督信号来学习图片的语言。</p><p>在各种各样的无监督特征学习benchemarks上进行了实验，特别的是，实验效果很好，相比之前最先进的无监督方法有了明显的进步，缩小了与supervised 特征学习之间的差距。</p><p>作者在 ImageNet classification 、 PASCAL classification、PASCAL segmentaion 和CIFAR-10 classification上进行了实验。</p><h2 id="code">code</h2><h2 id="介绍">介绍</h2><p>简单介绍了前人的一些自监督方法，并着重说了自己与他人的不同。</p><p>介绍了下自己的贡献：简单并且又有效，提供了一个强有力的辅助监督信号；并做了大量的实验；最后强调了下自己的方法能够缩小无监督和有监督学习之间的差距。</p><h2 id="方法">方法</h2><h3 id="概述">概述</h3><p>研究目标：训练出一个CNN网络结构<span class="math inline">\(F\left(X^{y *} \mid \theta\right)\)</span>预测图片的旋转角度。</p><p>主要解决的问题是：$ <em>{}  </em>{i=1}^{N} (X_{i}, )<span class="math inline">\(，其中\)</span>(.)<span class="math inline">\(是\)</span>(X_{i}, )=- <em>{y=1}^{K} (F^{y}(g(X</em>{i} y) ))$</p><h3 id="主要方法">主要方法</h3><p>将图片分别旋转0、90、180、270度，然后对于旋转后的照片进行预测。</p><h4 id="旋转的算法"><font color="red">旋转的算法</font></h4><p>以下算法都是对图片的矩阵进行操作</p><p>90：先转置再讲矩阵上下颠倒</p><p>180：先上下颠倒再左右颠倒</p><p>270：先上限颠倒再进行转置</p><h4 id="改进的算法"><font color="red">改进的算法</font></h4><p>旋转算子： <span class="math display">\[S=\left[\begin{array}{cc}\cos \theta &amp; -\sin \theta \\\sin \theta &amp; \cos \theta\end{array}\right]\]</span> 则一个图片的位置坐标为 <span class="math display">\[X&#39;=\left[\begin{array}{cc}\cos \theta &amp; -\sin \theta \\\sin \theta &amp; \cos \theta\end{array}\right]*{X}\]</span> 当<span class="math inline">\(\theta =0\)</span>时： <span class="math display">\[S=\left[\begin{array}{cc}1 &amp; 0\\0 &amp; 1\end{array}\right]\]</span></p><h3 id="优点">优点</h3><p>1、和自监督相比需要同等的算力，相同的收敛速度</p><p>2、能处理大规模数据集</p><p>3、相比其他无监督和自监督方法，rotation不需要太多的预处理过程</p><h3 id="实验结果">实验结果</h3><p>数据集：CIFA-10、ImgaeNet、PASCAL、Placses205</p><p>实验任务：目标检测、目标分割、图像分类</p><p>现象：随着RotNet深度的增加，网络能够在更早的层中生成特征提高物体识别的准确度。</p><p>猜想：随着模型深度的加深，网络的头部结构变得更加的复杂，使得早期特征对于旋转预测任务的特异性降低。</p><h4 id="实验细节设置">实验细节设置</h4><p>一般是是前两层网络结构采用了RotNet，学习到一定的特征。最后在第三层采用了目标检测的分类器，实现目标前侧的下游任务。</p><p>在样本数数量较少时，半监督模型的准确率比有监督时要好。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Self-supervison</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CV</tag>
+      
+      <tag>Self-supervison</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>pytorch</title>
     <link href="/2022/03/24/pytorch/"/>
     <url>/2022/03/24/pytorch/</url>

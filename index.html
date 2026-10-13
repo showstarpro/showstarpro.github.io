@@ -18,7 +18,7 @@
   - 这是一个纯静态页面，没有构建步骤。改完 index.html 提交到 main 分支，一两分钟后 https://showstarpro.github.io 就会更新。
   - 加新闻：在 News 列表最上面复制一个 <li>。
   - 加论文：复制一个 <li class="pub">，自己的名字用 <strong>Hanpeng Liu</strong>，共一加 *，通讯加 †。
-  - 放 CV：把 PDF 放到 assets/Hanpeng_Liu_CV.pdf，再把下面 links 里 CV 那一行的注释去掉。
+  - 更新 CV：用新编译的公开版 PDF 覆盖 assets/Hanpeng_Liu_CV.pdf（不要放带手机号的投递版）。
   - 换照片：替换 assets/img/photo.jpg，比例 3:4。
 -->
 
@@ -90,7 +90,7 @@
         <ul class="links">
           <li><a href="https://scholar.google.com/citations?user=5c3zymMAAAAJ">Google Scholar</a></li>
           <li><a href="https://github.com/showstarpro">GitHub</a></li>
-          <!-- <li><a href="assets/Hanpeng_Liu_CV.pdf">CV</a></li> -->
+          <li><a href="assets/Hanpeng_Liu_CV.pdf">CV (PDF)</a></li>
         </ul>
 
         <p class="market">I will finish my Ph.D. in 2027 and am looking for postdoctoral
@@ -188,12 +188,11 @@
       <h3>Other papers</h3>
       <ul class="rows pubs">
 
-        <!-- TODO: 补全作者列表（目前写的是 et al.） -->
         <li class="pub">
           <span class="idx">Pattern Recognition 2025</span>
           <div>
             <div class="pub-title">Boosting the Patch-based Self-Supervised Learning through Past-to-Present Smoothing</div>
-            <div class="pub-authors"><strong>Hanpeng Liu</strong>, et al.</div>
+            <div class="pub-authors"><strong>Hanpeng Liu</strong>, Shuoxi Zhang, Kaiyuan Gao, Kun He†</div>
           </div>
         </li>
 
@@ -206,12 +205,11 @@
           </div>
         </li>
 
-        <!-- TODO: 补全作者列表（目前写的是 et al.） -->
         <li class="pub">
           <span class="idx">IEEE TBD 2025</span>
           <div>
             <div class="pub-title">Residual Learning for Self-Knowledge Distillation</div>
-            <div class="pub-authors"><strong>Hanpeng Liu</strong>, et al.</div>
+            <div class="pub-authors"><strong>Hanpeng Liu</strong>*, Shuoxi Zhang*, Kun He†</div>
           </div>
         </li>
 
@@ -238,7 +236,7 @@
           <span class="idx">ECAI 2024</span>
           <div>
             <div class="pub-title">Grouped Logit Distillation Enhanced with Superclass Awareness for Efficient Knowledge Transfer</div>
-            <div class="pub-authors">Shuoxi Zhang, <strong>Hanpeng Liu</strong>, Yuyi Wang, Kun He</div>
+            <div class="pub-authors">Shuoxi Zhang, <strong>Hanpeng Liu</strong>, Yuyi Wang, Kun He†</div>
             <div class="pub-links"><a href="https://doi.org/10.3233/FAIA240786">Paper</a></div>
           </div>
         </li>
@@ -266,6 +264,17 @@
         <li><span class="idx">2018 – 2022</span>
           <div><span class="org">Huazhong University of Science and Technology</span>, B.Eng.
             <div class="sub">Computer Science and Technology.</div></div></li>
+      </ul>
+    </section>
+
+    <!-- ===================== Service ===================== -->
+    <section id="service" aria-labelledby="svc-h">
+      <h2 id="svc-h">Service</h2>
+      <ul class="rows">
+        <li><span class="idx">Conferences</span>
+          <span>Reviewer for NeurIPS, ICLR, CVPR and AAAI.</span></li>
+        <li><span class="idx">Journals</span>
+          <span>Reviewer for Pattern Recognition and IEEE Transactions on Cybernetics.</span></li>
       </ul>
     </section>
 

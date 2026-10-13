@@ -61,6 +61,8 @@
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 
+img { max-width: 100%; height: auto; }   /* no image can push the layout wider than its column */
+
 html { -webkit-text-size-adjust: 100%; }
 
 body {
@@ -206,6 +208,7 @@ section h3 {
   gap: var(--gap);
   padding: 0.55rem 0;
 }
+.rows > li > * { min-width: 0; }   /* let grid cells shrink instead of overflowing */
 .rows .idx {
   color: var(--muted);
   font-size: 0.95rem;
@@ -264,7 +267,7 @@ footer {
 }
 
 /* ---------- Publication figures ---------- */
-.pub-fig { display: block; margin: 0.65rem 0 0.15rem; }
+.pub-fig { display: block; max-width: 28rem; margin: 0.65rem 0 0.15rem; }   /* thumbnail size; click opens the full figure */
 .pub-fig img {
   display: block;
   width: 100%;

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+  <!-- 5x5 image-text similarity matrix; matched pairs on the diagonal -->
+  <g fill="#c9d3dc">
+    <rect x="10.5" y="0" width="8" height="8" rx="1.5" opacity=".55"/><rect x="21" y="0" width="8" height="8" rx="1.5" opacity=".25"/><rect x="31.5" y="0" width="8" height="8" rx="1.5" opacity=".4"/><rect x="42" y="0" width="8" height="8" rx="1.5" opacity=".2"/>
+    <rect x="0" y="10.5" width="8" height="8" rx="1.5" opacity=".35"/><rect x="21" y="10.5" width="8" height="8" rx="1.5" opacity=".5"/><rect x="31.5" y="10.5" width="8" height="8" rx="1.5" opacity=".2"/><rect x="42" y="10.5" width="8" height="8" rx="1.5" opacity=".3"/>
+    <rect x="0" y="21" width="8" height="8" rx="1.5" opacity=".2"/><rect x="10.5" y="21" width="8" height="8" rx="1.5" opacity=".45"/><rect x="31.5" y="21" width="8" height="8" rx="1.5" opacity=".3"/><rect x="42" y="21" width="8" height="8" rx="1.5" opacity=".5"/>
+    <rect x="0" y="31.5" width="8" height="8" rx="1.5" opacity=".5"/><rect x="10.5" y="31.5" width="8" height="8" rx="1.5" opacity=".25"/><rect x="21" y="31.5" width="8" height="8" rx="1.5" opacity=".35"/><rect x="42" y="31.5" width="8" height="8" rx="1.5" opacity=".4"/>
+    <rect x="0" y="42" width="8" height="8" rx="1.5" opacity=".3"/><rect x="10.5" y="42" width="8" height="8" rx="1.5" opacity=".4"/><rect x="21" y="42" width="8" height="8" rx="1.5" opacity=".2"/><rect x="31.5" y="42" width="8" height="8" rx="1.5" opacity=".55"/>
+  </g>
+  <g fill="#0e7466">
+    <rect x="0" y="0" width="8" height="8" rx="1.5"/><rect x="10.5" y="10.5" width="8" height="8" rx="1.5"/><rect x="21" y="21" width="8" height="8" rx="1.5"/><rect x="31.5" y="31.5" width="8" height="8" rx="1.5"/><rect x="42" y="42" width="8" height="8" rx="1.5"/>
+  </g>
+</svg>

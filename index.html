@@ -10,7 +10,7 @@
   <meta property="og:image" content="https://showstarpro.github.io/assets/img/photo.jpg">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/site.css?v=20261013b">
 </head>
 <body>
 <!--
@@ -18,6 +18,7 @@
   - 这是一个纯静态页面，没有构建步骤。改完 index.html 提交到 main 分支，一两分钟后 https://showstarpro.github.io 就会更新。
   - 加新闻：在 News 列表最上面复制一个 <li>。
   - 加论文：复制一个 <li class="pub">，自己的名字用 <strong>Hanpeng Liu</strong>，共一加 *，通讯加 †。
+  - 改了 assets/css/site.css 之后，把 <head> 里 site.css?v= 后面的版本号改一下，避免访客浏览器用旧缓存。
   - 代表作配图：放到 assets/img/pub-xxx.webp（宽 1400px 左右），在对应条目里复制 <a class="pub-fig"> 那一段。
   - 更新 CV：用新编译的公开版 PDF 覆盖 assets/Hanpeng_Liu_CV.pdf（不要放带手机号的投递版）。
   - 换照片：替换 assets/img/photo.jpg，比例 3:4。

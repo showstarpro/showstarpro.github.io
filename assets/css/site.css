@@ -262,3 +262,26 @@ footer {
     gap: 0.1rem;
   }
 }
+
+/* ---------- Publication figures ---------- */
+.pub-fig { display: block; margin: 0.65rem 0 0.15rem; }
+.pub-fig img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #fff;                 /* figures are drawn on white; keep that in dark mode too */
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 0.5rem;
+}
+.pub-fig:focus-visible img { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- Compact list for the other papers ---------- */
+.pubs.compact > li { padding: 0.45rem 0; }
+.pubs.compact .idx { color: var(--muted); font-weight: 400; }
+.pubs.compact .pub-title { font-size: 1rem; }
+.pubs.compact .pub-authors em { color: var(--ink); }
+.pubs.compact .pub-authors a { margin-left: 0.35rem; }
+
+/* jump targets land below the top edge */
+.pub { scroll-margin-top: 1rem; }

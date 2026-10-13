@@ -18,6 +18,7 @@
   - 这是一个纯静态页面，没有构建步骤。改完 index.html 提交到 main 分支，一两分钟后 https://showstarpro.github.io 就会更新。
   - 加新闻：在 News 列表最上面复制一个 <li>。
   - 加论文：复制一个 <li class="pub">，自己的名字用 <strong>Hanpeng Liu</strong>，共一加 *，通讯加 †。
+  - 代表作配图：放到 assets/img/pub-xxx.webp（宽 1400px 左右），在对应条目里复制 <a class="pub-fig"> 那一段。
   - 更新 CV：用新编译的公开版 PDF 覆盖 assets/Hanpeng_Liu_CV.pdf（不要放带手机号的投递版）。
   - 换照片：替换 assets/img/photo.jpg，比例 3:4。
 -->
@@ -60,9 +61,10 @@
       </svg>
     </a>
     <nav aria-label="Sections">
-      <a href="#news">News</a>
+      <a href="#research">Research</a>
       <a href="#publications">Publications</a>
       <a href="#experience">Experience</a>
+      <a href="assets/Hanpeng_Liu_CV.pdf">CV</a>
     </nav>
   </header>
 
@@ -77,11 +79,11 @@
           Huazhong University of Science and Technology (HUST)</p>
 
         <p>I am a final-year Ph.D. student at HUST, advised by Prof. Kun He.
-          I study how to learn visual representations that transfer across vision-language
-          systems: image-text pretraining, CLIP post-training, self-supervised visual
-          pretraining, and vision encoders for multimodal large language models.
-          Since 2024 I have also been a research intern at Li Auto, working on
-          large-scale training of vision and vision-language models.</p>
+          I work on visual representations for multimodal foundation models: how to pretrain
+          them, how to keep improving them after pretraining without losing what they already
+          know, and how to make them work better inside multimodal LLMs. I have published three
+          papers at NeurIPS and one at CVPR. As a research intern at Li Auto, I scaled CLIP-style
+          pretraining to 128 A800 GPUs and 1B-scale image-text data.</p>
 
         <ul class="links">
           <li><a href="mailto:hanpengliu@hust.edu.cn">hanpengliu@hust.edu.cn</a></li>
@@ -104,22 +106,23 @@
       </div>
     </div>
 
-    <!-- ===================== News ===================== -->
-    <section id="news" aria-labelledby="news-h">
-      <h2 id="news-h">News</h2>
-      <ul class="rows news">
-        <li><span class="idx">Sep 2026</span>
-          <span>Two papers accepted to NeurIPS 2026: ITO on image-text pretraining and ComCLIP on CLIP post-training.</span></li>
-        <li><span class="idx">Mar 2026</span>
-          <span>iGVLM, on instruction-guided vision encoding for multimodal LLMs, is on <a href="https://arxiv.org/abs/2603.02748">arXiv</a>.</span></li>
-        <li><span class="idx">Oct 2025</span>
-          <span>First-author paper on patch-based self-supervised learning accepted to Pattern Recognition.</span></li>
-        <li><span class="idx">Mar 2025</span>
-          <span>First-author paper accepted to IEEE Transactions on Big Data; one paper accepted to ICME 2025.</span></li>
-        <li><span class="idx">Sep 2024</span>
-          <span>One paper accepted to NeurIPS 2024. Started a research internship at Li Auto.</span></li>
-        <li><span class="idx">Feb 2024</span>
-          <span>Co-first-author paper on efficient vision transformers accepted to CVPR 2024.</span></li>
+    <!-- ===================== Research themes ===================== -->
+    <section id="research" aria-labelledby="research-h">
+      <h2 id="research-h">Research</h2>
+      <ul class="rows">
+        <li><span class="idx">Pretraining</span>
+          <span>Learning image-text and visual representations at scale: multi-view alignment with a
+            fusion module used only during training (<a href="#pub-ito">ITO</a>, NeurIPS 2026), and
+            self-supervised and autoregressive visual pretraining (<a href="#pub-pr">Pattern Recognition 2025</a>,
+            <a href="#pub-star">Vision Mamba preprint</a>).</span></li>
+        <li><span class="idx">Post-training</span>
+          <span>Improving a pretrained CLIP without forgetting, so the new vision encoder can replace the
+            old one in a multimodal LLM without re-alignment (<a href="#pub-comclip">ComCLIP</a>, NeurIPS 2026).</span></li>
+        <li><span class="idx">Multimodal LLMs</span>
+          <span>Vision encoders that respond to the question being asked (<a href="#pub-igvlm">iGVLM</a>).</span></li>
+        <li><span class="idx">Efficiency</span>
+          <span>Efficient vision transformers (<a href="#pub-lavit">LaViT</a>, CVPR 2024) and knowledge and
+            dataset distillation.</span></li>
       </ul>
     </section>
 
@@ -132,12 +135,16 @@
       <h3>Selected</h3>
       <ul class="rows pubs">
 
-        <li class="pub">
+        <li class="pub" id="pub-ito">
           <span class="idx">NeurIPS 2026</span>
           <div>
             <div class="pub-title">ITO: Multi-View Alignment and Training-Time Fusion for Image-Text Pretraining</div>
             <div class="pub-authors"><strong>Hanpeng Liu</strong>, Yaqian Li†, Zidan Wang, Shuoxi Zhang, Zonglin Zhao, Zihao Bo, Rinyoichi Takezoe, Kaiwen Long, Kun He†</div>
-            <div class="pub-tldr">Aligns images and texts across multiple views and adds a fusion module that is used only during training, so inference keeps the cost of a standard dual encoder.</div>
+            <a class="pub-fig" href="assets/img/pub-ito.webp">
+              <img src="assets/img/pub-ito.webp" width="1400" height="684" loading="lazy"
+                   alt="ITO overview: two augmented views and decomposed sub-captions are encoded, aligned across views, and fused by a training-only multimodal fusion module.">
+            </a>
+            <div class="pub-tldr">Aligns images and texts across multiple views and adds a fusion module that is used only during training, so inference keeps the cost of a standard dual encoder. Gives consistent gains over CLIP under identical data, backbone and compute at the 100M to 1B scale.</div>
             <div class="pub-links">
               <a href="https://arxiv.org/abs/2603.02767">Paper</a>
               <a href="https://github.com/showstarpro/ITO">Code</a>
@@ -146,12 +153,16 @@
           </div>
         </li>
 
-        <li class="pub">
+        <li class="pub" id="pub-comclip">
           <span class="idx">NeurIPS 2026</span>
           <div>
             <div class="pub-title">Rethinking Contrastive Loss in CLIP Post-training: A Complementary Framework with Frozen Text Encoder</div>
             <div class="pub-authors">Zidan Wang, Yaqian Li†, Xiaokai Zhang, Kaiwen Long, Kun He, <strong>Hanpeng Liu</strong>†</div>
-            <div class="pub-tldr">Shows that forgetting in CLIP post-training is driven by the InfoNCE temperature rather than small batches, and keeps the text encoder frozen so the improved vision encoder drops into LLaVA without re-alignment.</div>
+            <a class="pub-fig" href="assets/img/pub-comclip.webp">
+              <img src="assets/img/pub-comclip.webp" width="1400" height="637" loading="lazy"
+                   alt="ComCLIP overview: the CLIP text encoder is frozen; the trainable image encoder is trained with a contrastive loss, an MSE anchor to the frozen CLIP image encoder, and relation distillation from DINOv2.">
+            </a>
+            <div class="pub-tldr">Shows that forgetting in CLIP post-training is driven by the InfoNCE temperature rather than small batches. With the text encoder frozen, linear probing improves from 42.28 to 48.99 over CLIP-Refine (ViT-B/16), and the new encoder drops into LLaVA-1.5-7B with no net change across 8 benchmarks.</div>
             <div class="pub-links">
               <a href="https://arxiv.org/abs/2610.11374">Paper</a>
               <a href="https://github.com/showstarpro/ComCLIP">Code</a>
@@ -161,24 +172,32 @@
         </li>
 
         <!-- 如果 iGVLM 已被录用，把下面的 "Preprint" 改成会议名和年份 -->
-        <li class="pub">
+        <li class="pub" id="pub-igvlm">
           <span class="idx">Preprint</span>
           <div>
             <div class="pub-title">iGVLM: Dynamic Instruction-Guided Vision Encoding for Question-Aware Multimodal Understanding</div>
             <div class="pub-authors"><strong>Hanpeng Liu</strong>, Yaqian Li†, Zidan Wang, Shuoxi Zhang, Zihao Bo, Rinyoichi Takezoe, Kaiwen Long, Kun He†</div>
-            <div class="pub-tldr">Conditions the vision encoder of a multimodal LLM on the user's question, so the visual features adapt to each instruction.</div>
+            <a class="pub-fig" href="assets/img/pub-igvlm.webp">
+              <img src="assets/img/pub-igvlm.webp" width="1400" height="755" loading="lazy"
+                   alt="iGVLM overview: a frozen static vision encoder plus a dynamic branch whose features are modulated by the instruction through adaptive layer normalization, merged before the projector of the LLM.">
+            </a>
+            <div class="pub-tldr">Adds an instruction-conditioned branch next to a frozen vision encoder, so the visual features adapt to each question. Works as a plug-in across different language backbones, and introduces MM4, a probe for consistency under multiple queries and instructions.</div>
             <div class="pub-links">
               <a href="https://arxiv.org/abs/2603.02748">Paper</a>
             </div>
           </div>
         </li>
 
-        <li class="pub">
+        <li class="pub" id="pub-lavit">
           <span class="idx">CVPR 2024</span>
           <div>
             <div class="pub-title">You Only Need Less Attention at Each Stage in Vision Transformers</div>
             <div class="pub-authors">Shuoxi Zhang*, <strong>Hanpeng Liu</strong>*, Stephen Lin, Kun He</div>
-            <div class="pub-tldr">An efficient vision transformer that computes self-attention in only a few layers of each stage and reuses it in the rest.</div>
+            <a class="pub-fig" href="assets/img/pub-lavit.webp">
+              <img src="assets/img/pub-lavit.webp" width="1314" height="642" loading="lazy"
+                   alt="LaViT overview: each stage computes vanilla attention in a few layers and reuses the attention matrix, transformed, in the remaining less-attention layers.">
+            </a>
+            <div class="pub-tldr">LaViT computes full self-attention in only a few layers of each stage and reuses the attention matrix in the rest, improving efficiency on classification, detection and segmentation.</div>
             <div class="pub-links">
               <a href="https://openaccess.thecvf.com/content/CVPR2024/html/Zhang_You_Only_Need_Less_Attention_at_Each_Stage_in_Vision_CVPR_2024_paper.html">Paper</a>
             </div>
@@ -187,76 +206,91 @@
       </ul>
 
       <h3>Other papers</h3>
-      <ul class="rows pubs">
+      <ul class="rows pubs compact">
 
-        <li class="pub">
-          <span class="idx">Preprint</span>
+        <li class="pub" id="pub-star">
+          <span class="idx">2026</span>
           <div>
             <div class="pub-title">Separators in Enhancing Autoregressive Pretraining for Vision Mamba</div>
-            <div class="pub-authors"><strong>Hanpeng Liu</strong>, Zidan Wang, Shuoxi Zhang, Kaiyuan Gao, Kun He</div>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2603.03806">Paper</a></div>
+            <div class="pub-authors"><strong>Hanpeng Liu</strong>, Zidan Wang, Shuoxi Zhang, Kaiyuan Gao, Kun He. <em>arXiv preprint.</em>
+              <a href="https://arxiv.org/abs/2603.03806">Paper</a></div>
           </div>
         </li>
 
-        <li class="pub">
-          <span class="idx">Pattern Recognition 2025</span>
+        <li class="pub" id="pub-pr">
+          <span class="idx">2025</span>
           <div>
             <div class="pub-title">Boosting the Patch-based Self-Supervised Learning through Past-to-Present Smoothing</div>
-            <div class="pub-authors"><strong>Hanpeng Liu</strong>, Shuoxi Zhang, Kaiyuan Gao, Kun He†</div>
+            <div class="pub-authors"><strong>Hanpeng Liu</strong>, Shuoxi Zhang, Kaiyuan Gao, Kun He†. <em>Pattern Recognition.</em></div>
           </div>
         </li>
 
         <li class="pub">
-          <span class="idx">IEEE TETCI 2025</span>
+          <span class="idx"></span>
           <div>
             <div class="pub-title">Class Discriminative Knowledge Distillation</div>
-            <div class="pub-authors">Shuoxi Zhang, <strong>Hanpeng Liu</strong>, Yuyi Wang, Kun He, Jun Lin, Yang Zeng</div>
-            <div class="pub-links"><a href="https://ieeexplore.ieee.org/document/10857646">Paper</a></div>
+            <div class="pub-authors">Shuoxi Zhang, <strong>Hanpeng Liu</strong>, Yuyi Wang, Kun He, Jun Lin, Yang Zeng. <em>IEEE Transactions on Emerging Topics in Computational Intelligence.</em>
+              <a href="https://ieeexplore.ieee.org/document/10857646">Paper</a></div>
           </div>
         </li>
 
         <li class="pub">
-          <span class="idx">IEEE TBD 2025</span>
+          <span class="idx"></span>
           <div>
             <div class="pub-title">Residual Learning for Self-Knowledge Distillation</div>
-            <div class="pub-authors"><strong>Hanpeng Liu</strong>*, Shuoxi Zhang*, Kun He†</div>
+            <div class="pub-authors"><strong>Hanpeng Liu</strong>*, Shuoxi Zhang*, Kun He†. <em>IEEE Transactions on Big Data.</em></div>
           </div>
         </li>
 
         <li class="pub">
-          <span class="idx">ICME 2025</span>
+          <span class="idx"></span>
           <div>
             <div class="pub-title">Hyperspherical Dataset Distillation via Contrastive Embedding Alignment</div>
-            <div class="pub-authors">Shuoxi Zhang, <strong>Hanpeng Liu</strong>, Stephen Lin, Kun He†</div>
-            <div class="pub-links"><a href="https://ieeexplore.ieee.org/abstract/document/11208901/">Paper</a></div>
+            <div class="pub-authors">Shuoxi Zhang, <strong>Hanpeng Liu</strong>, Stephen Lin, Kun He†. <em>ICME.</em>
+              <a href="https://ieeexplore.ieee.org/abstract/document/11208901/">Paper</a></div>
           </div>
         </li>
 
         <li class="pub">
-          <span class="idx">NeurIPS 2024</span>
+          <span class="idx">2024</span>
           <div>
             <div class="pub-title">Leveraging Contrastive Learning for Enhanced Node Representations in Tokenized Graph Transformers</div>
-            <div class="pub-authors">Jinsong Chen, <strong>Hanpeng Liu</strong>, John E. Hopcroft, Kun He</div>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2406.19258">Paper</a></div>
+            <div class="pub-authors">Jinsong Chen, <strong>Hanpeng Liu</strong>, John E. Hopcroft, Kun He. <em>NeurIPS.</em>
+              <a href="https://arxiv.org/abs/2406.19258">Paper</a></div>
           </div>
         </li>
 
         <li class="pub">
-          <span class="idx">ECAI 2024</span>
+          <span class="idx"></span>
           <div>
             <div class="pub-title">Grouped Logit Distillation Enhanced with Superclass Awareness for Efficient Knowledge Transfer</div>
-            <div class="pub-authors">Shuoxi Zhang, <strong>Hanpeng Liu</strong>, Yuyi Wang, Kun He†</div>
-            <div class="pub-links"><a href="https://doi.org/10.3233/FAIA240786">Paper</a></div>
+            <div class="pub-authors">Shuoxi Zhang, <strong>Hanpeng Liu</strong>, Yuyi Wang, Kun He†. <em>ECAI.</em>
+              <a href="https://doi.org/10.3233/FAIA240786">Paper</a></div>
           </div>
         </li>
 
         <li class="pub">
-          <span class="idx">Big Data Research 2024</span>
+          <span class="idx"></span>
           <div>
             <div class="pub-title">Knowledge Distillation via Token-Level Relationship Graph Based on the Big Data Technologies</div>
-            <div class="pub-authors">Shuoxi Zhang, <strong>Hanpeng Liu</strong>, Kun He</div>
+            <div class="pub-authors">Shuoxi Zhang, <strong>Hanpeng Liu</strong>, Kun He. <em>Big Data Research.</em></div>
           </div>
         </li>
+      </ul>
+    </section>
+
+    <!-- ===================== News ===================== -->
+    <section id="news" aria-labelledby="news-h">
+      <h2 id="news-h">News</h2>
+      <ul class="rows news">
+        <li><span class="idx">Sep 2026</span>
+          <span>Two papers accepted to NeurIPS 2026: <a href="#pub-ito">ITO</a> and <a href="#pub-comclip">ComCLIP</a>.</span></li>
+        <li><span class="idx">Mar 2026</span>
+          <span><a href="https://arxiv.org/abs/2603.02748">iGVLM</a> and our <a href="https://arxiv.org/abs/2603.03806">Vision Mamba pretraining paper</a> are on arXiv.</span></li>
+        <li><span class="idx">Sep 2024</span>
+          <span>One paper accepted to NeurIPS 2024. Started a research internship at Li Auto.</span></li>
+        <li><span class="idx">Feb 2024</span>
+          <span>Co-first-author paper on efficient vision transformers accepted to CVPR 2024.</span></li>
       </ul>
     </section>
 
@@ -276,14 +310,16 @@
       </ul>
     </section>
 
-    <!-- ===================== Service ===================== -->
+    <!-- ===================== Service and mentoring ===================== -->
     <section id="service" aria-labelledby="svc-h">
-      <h2 id="svc-h">Service</h2>
+      <h2 id="svc-h">Service and mentoring</h2>
       <ul class="rows">
         <li><span class="idx">Conferences</span>
           <span>Reviewer for NeurIPS, ICLR, CVPR and AAAI.</span></li>
         <li><span class="idx">Journals</span>
           <span>Reviewer for Pattern Recognition and IEEE Transactions on Cybernetics.</span></li>
+        <li><span class="idx">Mentoring</span>
+          <span>Mentored junior students at HUST on CLIP post-training, leading to <a href="#pub-comclip">ComCLIP</a> (NeurIPS 2026), on which I am co-corresponding author.</span></li>
       </ul>
     </section>
 

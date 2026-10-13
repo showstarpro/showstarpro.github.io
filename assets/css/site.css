@@ -1,0 +1,262 @@
+/* =========================================================
+   Hanpeng Liu — personal homepage
+   Layout idea: one narrow reading column with a left "index"
+   column (dates, venues) shared by News, Publications and
+   Experience, so the eye can scan years/venues top to bottom.
+   ========================================================= */
+
+/* ---------- Self-hosted fonts (no Google Fonts: loads fine in mainland China) ---------- */
+@font-face {
+  font-family: "Plex Sans";
+  src: url("../fonts/ibm-plex-sans-latin-400-normal.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Plex Sans";
+  src: url("../fonts/ibm-plex-sans-latin-400-italic.woff2") format("woff2");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Plex Sans";
+  src: url("../fonts/ibm-plex-sans-latin-600-normal.woff2") format("woff2");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Plex Serif";
+  src: url("../fonts/ibm-plex-serif-latin-500-normal.woff2") format("woff2");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+
+/* ---------- Tokens ---------- */
+:root {
+  --paper: #ffffff;
+  --ink: #18212b;        /* body text */
+  --muted: #5a6472;      /* secondary text, author lists */
+  --rule: #e2e6ec;       /* the few dividers we use */
+  --tint: #eef4f3;       /* job-market note background */
+  --accent: #0e7466;     /* viridian: links, venues, matrix diagonal */
+  --cell: #c9d3dc;       /* off-diagonal matrix cells */
+
+  --sans: "Plex Sans", "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --serif: "Plex Serif", Georgia, "Songti SC", serif;
+
+  --measure: 46rem;      /* reading column width (~75 characters per line) */
+  --index: 7.5rem;       /* left index column for dates / venues */
+  --gap: 1.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #10151b;
+    --ink: #e4e9ef;
+    --muted: #9aa5b3;
+    --rule: #253040;
+    --tint: #16232a;
+    --accent: #4fc4ae;
+    --cell: #2c3a48;
+  }
+  .photo { filter: brightness(0.9); }   /* tone down the white ID-photo background on dark pages */
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  font-variant-numeric: tabular-nums;   /* dates line up in the index column */
+}
+
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.wrap {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ---------- Top bar ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem 0 0.5rem;
+}
+.topbar nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
+.topbar nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.topbar nav a:hover { color: var(--ink); }
+
+/* ---------- Similarity-matrix mark ----------
+   A tiny image-text similarity matrix: the diagonal (matched pairs)
+   lights up once on page load. */
+.matrix { display: block; width: 44px; height: 44px; flex: none; }
+.matrix rect { fill: var(--cell); }
+.matrix .d {
+  fill: var(--accent);
+  animation: light 520ms ease-out both;
+  /* --i is the cell's position on the diagonal (0–4), set inline in the HTML */
+  animation-delay: calc(150ms + var(--i, 0) * 120ms);
+}
+@keyframes light {
+  from { fill: var(--cell); opacity: 0.35; }
+  to   { fill: var(--accent); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .matrix .d { animation: none; }
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 9.5rem;
+  gap: 2rem;
+  align-items: start;
+  padding: 2rem 0 1rem;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 2.75rem;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.hero .zh {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  color: var(--muted);
+  margin: 0.35rem 0 0;
+}
+.hero .role {
+  margin: 0.9rem 0 0;
+  color: var(--muted);
+}
+.hero p { margin: 1rem 0 0; }
+
+.photo {
+  width: 100%;
+  height: auto;          /* override the height attribute so aspect-ratio applies */
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.market {
+  margin: 1.4rem 0 0;
+  padding: 0.85rem 1rem;
+  background: var(--tint);
+  border-radius: 6px;
+}
+
+/* ---------- Sections ---------- */
+section { padding: 1.75rem 0 0; }
+section h2 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  margin: 0 0 1rem;
+}
+section h3 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin: 1.75rem 0 0.75rem;
+}
+.note { color: var(--muted); font-size: 0.9rem; margin: -0.5rem 0 1rem; }
+
+/* Rows with a left index column (date or venue) */
+.rows { list-style: none; margin: 0; padding: 0; }
+.rows > li {
+  display: grid;
+  grid-template-columns: var(--index) 1fr;
+  gap: var(--gap);
+  padding: 0.55rem 0;
+}
+.rows .idx {
+  color: var(--muted);
+  font-size: 0.95rem;
+  padding-top: 0.05rem;
+}
+
+/* News */
+.news > li { padding: 0.35rem 0; }
+
+/* Publications */
+.pubs > li { padding: 0.8rem 0; }
+.pubs .idx { color: var(--accent); font-weight: 600; }
+.pub-title { font-weight: 600; line-height: 1.4; }
+.pub-authors, .pub-venue { color: var(--muted); font-size: 0.95rem; margin-top: 0.2rem; }
+.pub-authors strong { color: var(--ink); font-weight: 600; }
+.pub-tldr { margin-top: 0.35rem; font-size: 0.98rem; }
+.pub-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1rem;
+  margin-top: 0.35rem;
+  font-size: 0.95rem;
+}
+
+/* Interests */
+.interests { margin: 0; padding-left: 1.2rem; }
+.interests li { margin: 0.2rem 0; }
+
+/* Experience */
+.org { font-weight: 600; }
+.sub { color: var(--muted); font-size: 0.95rem; }
+
+/* ---------- Footer ---------- */
+footer {
+  margin: 3rem 0 0;
+  padding: 1.25rem 0 2.5rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 640px) {
+  body { font-size: 1rem; }
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding-top: 1.25rem;
+  }
+  .hero .photo-wrap { order: -1; width: 7.5rem; }   /* photo first, small */
+  .hero h1 { font-size: 2.2rem; }
+  .rows > li {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+  }
+}

@@ -173,6 +173,8 @@ a:focus-visible {
   list-style: none;
 }
 
+.links + .links { margin-top: 0.3rem; }   /* second row: profile links under the emails */
+
 .market {
   margin: 1.4rem 0 0;
   padding: 0.85rem 1rem;

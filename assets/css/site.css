@@ -237,7 +237,31 @@ section h3 {
 .interests { margin: 0; padding-left: 1.2rem; }
 .interests li { margin: 0.2rem 0; }
 
-/* Experience */
+/* Internship experience and education */
+.affiliations {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.25rem;
+}
+.affiliations li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 1rem;
+}
+.org-logo {
+  display: block;
+  width: clamp(3rem, 9vw, 4rem);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  padding: 0.25rem;
+  background: #fff;
+  border-radius: 6px;
+}
+.org-date { color: var(--muted); font-size: 0.95rem; }
 .org { font-weight: 600; }
 .sub { color: var(--muted); font-size: 0.95rem; }
 
